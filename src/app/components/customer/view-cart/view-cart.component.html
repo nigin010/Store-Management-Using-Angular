@@ -1,0 +1,33 @@
+<div
+  *ngFor="let item of cartItems"
+  class="card bg-base-100 shadow-xl mx-10 flex flex-row my-10"
+>
+  <figure>
+    <img
+      [src]="getSafeImageUrl(item.imageUrl)"
+      alt="{{ item.productName }}"
+      style="max-height: 150px; width: 100%; object-fit: cover"
+    />
+  </figure>
+  <div class="card-body">
+    <div>
+      <h2 class="card-title justify-center">{{ item.productName }}</h2>
+    </div>
+    <div class="w-full flex flex-col items-end p-4">
+      <div class="flex items-end gap-2 justify-end">
+        <h5 class="card-title" style="margin: 0">Price :</h5>
+        <p style="padding-top: 2px">{{ item.finalPrice }}</p>
+      </div>
+      <div class="flex items-center gap-2 justify-end">
+        <h5 class="card-title" style="margin: 0">Quantity :</h5>
+        <p style="padding-top: 2px">{{ item.totalQuantity }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-actions justify-end mx-10 my-10">
+  <button (click)="proceedToCheckout()" class="btn btn-primary">
+    Proceed To Checkout
+  </button>
+</div>

@@ -1,0 +1,40 @@
+<div class="overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name Of The Product</th>
+        <th>Price (In Rupees)</th>
+        <th>Total Quantity in Warehouse</th>
+        <th>Additional Notes</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of stockItems">
+        <td>
+          <div class="flex items-center gap-3">
+            <div class="avatar">
+              <div class="mask mask-squircle h-12 w-12">
+                <img
+                  [src]="getSafeImageUrl(item.imageurl)"
+                  alt="{{ item.productName }}"
+                />
+              </div>
+            </div>
+            <div>
+              <div class="font-bold">{{ item.productName }}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          {{ item.price }}
+          <br />
+        </td>
+        <td>{{ item.quantity }}</td>
+        <td>
+          <button class="btn btn-ghost btn-xs">Additional Notes here</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

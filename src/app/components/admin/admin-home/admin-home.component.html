@@ -1,0 +1,78 @@
+<div class="flex justify-center items-center min-h-screen">
+  <div class="w-3/4 flex justify-around items-center">
+    <div class="flex flex-col items-center">
+      <!-- Stock Button -->
+      <button
+        class="btn btn-square btn-outline"
+        style="height: 240px; width: 240px"
+        routerLink="/view-stock"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-48 w-48"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 12l9-9 9 9M4 12v9h16v-9M4 9h16v3H4V9zm0 0h16"
+          />
+        </svg>
+      </button>
+      <span class="mt-4 text-3xl">View Stock</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <!-- Plus Button (formerly third) -->
+      <button
+        class="btn btn-square btn-outline"
+        style="height: 240px; width: 240px"
+        routerLink="/add-a-product"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-48 w-48"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+      </button>
+      <span class="mt-4 text-3xl">Add a new Product</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <!-- Dollar Button (formerly second) -->
+      <button
+        class="btn btn-square btn-outline"
+        style="height: 240px; width: 240px"
+        routerLink="/view-transactions"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-48 w-48"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 1v22M17 5H9a4 4 0 000 8h6a4 4 0 010 8H7"
+          />
+        </svg>
+      </button>
+      <span class="mt-4 text-3xl">View Transactions</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="overflow-x-auto">
+  <table class="table table-xs">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Total Spent (In Rupees)</th>
+        <th>List of Items Bought</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let name of nameOfTheCustomer; let i = index">
+        <th>{{ i + 1 }}</th>
+        <td>{{ name }}</td>
+        <td>{{ totalAmountSpent[i] }}</td>
+        <td>{{ itemsBought[i] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

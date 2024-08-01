@@ -1,0 +1,57 @@
+<div class="max-w-4xl mx-auto p-6 bg-blue-950 shadow-md rounded-lg">
+  <div class="text-center mb-6">
+    <h1 class="text-3xl font-bold mb-2">CLOUD 9 SUPERSTORE</h1>
+    <p>Phone: (123) 456-7890 | Email: cloud9superstore&#64;gmail.com</p>
+  </div>
+
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold">
+      Bill To:
+      {{ billData.cartItems.length > 0 ? billData.cartItems[0].userName : "" }}
+    </h2>
+  </div>
+
+  <table class="w-full mb-6 border border-gray-300 rounded-md overflow-hidden">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="p-2 text-left">Description</th>
+        <th class="p-2 text-left">Quantity</th>
+        <th class="p-2 text-left">Unit Price</th>
+        <th class="p-2 text-left">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of billData.cartItems" class="bg-white border-b">
+        <td class="p-2">{{ item.productName }}</td>
+        <td class="p-2 text-center">{{ item.totalQuantity }}</td>
+        <td class="p-2 text-right">
+          ${{ (item.finalPrice / item.totalQuantity).toFixed(2) }}
+        </td>
+        <td class="p-2 text-right">${{ item.finalPrice.toFixed(2) }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="flex justify-end mb-6">
+    <div class="w-1/2">
+      <div class="flex justify-between font-semibold">
+        <span>Subtotal:</span>
+        <span>${{ calculateSubtotal().toFixed(2) }}</span>
+      </div>
+      <div class="flex justify-between font-semibold">
+        <span>Tax (10%):</span>
+        <span>${{ calculateTax().toFixed(2) }}</span>
+      </div>
+      <div class="flex justify-between font-bold text-lg">
+        <span>Total Amount Due:</span>
+        <span>${{ billData.finalBillAmount }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center text-sm text-gray-600">
+    <p>Thank you for your business!</p>
+    <p>CLOUD 9 SUPERSTORE</p>
+    <p>Phone: (123) 456-7890 | Email: cloud9superstore&#64;gmail.com</p>
+  </div>
+</div>
