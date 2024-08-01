@@ -45,8 +45,4 @@ export class ComputerGeneratedBillComponent implements OnInit {
       0
     );
   }
-
-  calculateTax(): number {
-    return this.calculateSubtotal() * 0.1;
-  }
 }
