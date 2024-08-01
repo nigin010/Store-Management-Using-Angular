@@ -26,11 +26,8 @@ export class ComputerGeneratedBillComponent implements OnInit {
   }
 
   proceedToCheckout(name: string | null): void {
-    console.log('name --> ', name);
     this.customerService.proceedToCheckout(name).subscribe({
       next: (response) => {
-        console.log('Data --> ', response.data);
-        console.log('Cart items --> ', response.data.cartItems);
         this.billData = response.data;
       },
       error: (error) => {

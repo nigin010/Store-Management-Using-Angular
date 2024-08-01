@@ -41,7 +41,6 @@ export class ProductShowcaseComponent implements OnInit {
 
   addToCart(item: Stock): void {
     const selectedQuantity = this.quantities[item.productName] || 1;
-    console.log('Item bought:', item, 'Quantity:', selectedQuantity);
     const checkCartEligibility = this.customerService
       .checkCartEligibility(item.productName, selectedQuantity)
       .subscribe((response) => {
@@ -52,7 +51,6 @@ export class ProductShowcaseComponent implements OnInit {
             .subscribe(() => {
               {
                 this.successToast = true;
-                console.log(this.successToast);
                 setTimeout(() => {
                   this.failureToast = null;
                   window.location.reload();
@@ -61,7 +59,6 @@ export class ProductShowcaseComponent implements OnInit {
             });
         } else {
           this.failureToast = true;
-          console.log(this.failureToast);
           setTimeout(() => {
             this.failureToast = null;
           }, 3000);

@@ -43,7 +43,6 @@ export class SignupComponent implements OnInit {
   onSignup() {
     if (this.signupForm.valid) {
       const formData = this.signupForm.value;
-      console.log(this.signupForm.value);
       this.authenticationService
         .signup(
           formData.name,

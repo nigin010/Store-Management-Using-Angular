@@ -33,7 +33,6 @@ export class AddAProductComponent implements OnInit {
 
   onSubmit(): void {
     if (this.productForm.valid) {
-      console.log(this.productForm.value.imageUrl);
       this.productDetails = this.productForm.value;
       this.adminService
         .addAProduct(

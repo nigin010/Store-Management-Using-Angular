@@ -55,7 +55,6 @@ export class LoginComponent {
             this.router.navigate(['/view-store']);
           }
         });
-      console.log('Form Data:', formData.username);
     } else {
       console.log('Form is invalid');
     }

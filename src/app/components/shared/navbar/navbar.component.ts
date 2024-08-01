@@ -14,7 +14,6 @@ export class NavbarComponent implements OnInit, OnChanges {
   constructor(private readonly router: Router, private location: Location) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.backButtonCheck();
-    console.log('Status--> ', this.backButtonCheck());
   }
 
   ngOnInit(): void {
@@ -22,7 +21,6 @@ export class NavbarComponent implements OnInit, OnChanges {
       this.router.navigate(['/login']);
     }
     this.backButtonCheck();
-    console.log('Status--> ', this.backButtonCheck());
   }
   backButtonCheck(): boolean {
     const currentUrl = this.router.url;
