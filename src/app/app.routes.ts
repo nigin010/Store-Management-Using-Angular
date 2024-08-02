@@ -11,11 +11,11 @@ import { ComputerGeneratedBillComponent } from './components/shared/computer-gen
 export const routes: Routes = [
   { path: 'sign-up', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin-home', component: AdminHomeComponent }, //done
-  { path: 'view-stock', component: ViewStockComponent }, //done
+  { path: 'admin-home', component: AdminHomeComponent },
+  { path: 'view-stock', component: ViewStockComponent },
   { path: 'add-a-product', component: AddAProductComponent },
-  { path: 'view-transactions', component: ViewTransactionsComponent }, //done
-  { path: 'view-store', component: ProductShowcaseComponent }, //done
-  { path: 'view-cart', component: ViewCartComponent }, //done
+  { path: 'view-transactions', component: ViewTransactionsComponent },
+  { path: 'view-store', component: ProductShowcaseComponent },
+  { path: 'view-cart', component: ViewCartComponent },
   { path: 'bill', component: ComputerGeneratedBillComponent },
 ];

@@ -22,7 +22,6 @@ export class ViewCartComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.name = sessionStorage.getItem('name');
-    // this.name = '';
     if (!this.name) {
       this.router.navigate(['/login']);
     }

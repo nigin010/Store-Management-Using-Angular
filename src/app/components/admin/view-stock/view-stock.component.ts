@@ -1,4 +1,3 @@
-// import { AdminService } from './../../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
 import { Stock } from '../../../types/response.model';

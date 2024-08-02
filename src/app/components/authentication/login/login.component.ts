@@ -47,13 +47,13 @@ export class LoginComponent {
             setTimeout(() => {
               this.failureToast = null;
             }, 3000);
-          } else if (data.data.roleId == 1) {
+          } else if (data.data.user.roleId == 1) {
             sessionStorage.setItem('roleId', '1');
-            sessionStorage.setItem('name', data.data.name);
+            sessionStorage.setItem('name', data.data.user.name);
             this.router.navigate(['/admin-home']);
           } else {
             sessionStorage.setItem('roleId', '2');
-            sessionStorage.setItem('name', data.data.name);
+            sessionStorage.setItem('name', data.data.user.name);
             this.router.navigate(['/view-store']);
           }
         });

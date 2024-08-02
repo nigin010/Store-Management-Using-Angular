@@ -58,8 +58,8 @@ export class SignupComponent implements OnInit {
             this.successToast = true;
             setTimeout(() => {
               this.successToast = null;
+              this.router.navigate(['/admin-home']);
             }, 3000);
-            this.router.navigate(['/admin-home']);
           }
         });
     } else {
