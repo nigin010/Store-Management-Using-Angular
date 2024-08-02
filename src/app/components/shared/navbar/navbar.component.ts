@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit, OnChanges {
+  private tokenKey = 'authToken';
   constructor(private readonly router: Router, private location: Location) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.backButtonCheck();
@@ -54,6 +55,7 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   logout() {
     sessionStorage.clear();
+    localStorage.removeItem(this.tokenKey);
     this.router.navigate(['/login']);
   }
 

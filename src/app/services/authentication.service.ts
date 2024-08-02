@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthenticationService {
+  private tokenKey = 'authToken';
   constructor(private http: HttpClient) {}
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -35,5 +36,9 @@ export class AuthenticationService {
       )}&roleid=${encodeURIComponent(roleId)}`,
       { headers: this.headers }
     );
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
   }
 }

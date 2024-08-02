@@ -20,6 +20,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   failureToast: boolean | null = null;
   errorText!: string;
+  private token: string = 'authToken';
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
@@ -39,6 +40,7 @@ export class LoginComponent {
       this.authenticationService
         .login(formData.username, formData.password)
         .subscribe((data) => {
+          localStorage.setItem(this.token, data.data.token);
           if (data.status == 'fail') {
             this.errorText = data.error;
             this.failureToast = true;
