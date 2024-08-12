@@ -40,7 +40,6 @@ export class LoginComponent {
       this.authenticationService
         .login(formData.username, formData.password)
         .subscribe((data) => {
-          localStorage.setItem(this.token, data.data.token);
           if (data.status == 'fail') {
             this.errorText = data.error;
             this.failureToast = true;
@@ -48,10 +47,12 @@ export class LoginComponent {
               this.failureToast = null;
             }, 3000);
           } else if (data.data.user.roleId == 1) {
+            localStorage.setItem(this.token, data.data.token);
             sessionStorage.setItem('roleId', '1');
             sessionStorage.setItem('name', data.data.user.name);
             this.router.navigate(['/admin-home']);
           } else {
+            localStorage.setItem(this.token, data.data.token);
             sessionStorage.setItem('roleId', '2');
             sessionStorage.setItem('name', data.data.user.name);
             this.router.navigate(['/view-store']);

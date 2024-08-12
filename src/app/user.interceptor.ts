@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 
 export const userInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthenticationService);
-  const baseUrl = 'https://localhost:7005/StoreManagement';
+  const baseUrl = 'https://localhost:7005';
   let authReq = req.clone({
     url: `${baseUrl}/${req.url}`,
   });
