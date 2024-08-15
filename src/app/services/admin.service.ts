@@ -48,4 +48,13 @@ export class AdminService {
       }
     );
   }
+
+  searchCustomer(name: string): Observable<DefaultResponse<Transaction>> {
+    return this.http.post<DefaultResponse<Transaction>>(
+      `filter-transaction?name=${encodeURIComponent(name)}`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
 }

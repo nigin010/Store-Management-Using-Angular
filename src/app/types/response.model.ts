@@ -13,7 +13,7 @@ export interface Transaction {
 
 export interface Stock {
   productName: string;
-  imageurl: string;
+  imageUrl: string;
   price: number;
   quantity: number;
 }

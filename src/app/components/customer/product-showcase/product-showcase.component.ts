@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
 import { DefaultResponse, Stock } from '../../../types/response.model';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-product-showcase',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './product-showcase.component.html',
   styleUrls: ['./product-showcase.component.css'],
 })
@@ -15,8 +17,12 @@ export class ProductShowcaseComponent implements OnInit {
   quantities: { [key: string]: number } = {};
   successToast: boolean | null = null;
   failureToast: boolean | null = null;
+  searchTerm: string = '';
 
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.loadStoreItems();
@@ -41,7 +47,7 @@ export class ProductShowcaseComponent implements OnInit {
 
   addToCart(item: Stock): void {
     const selectedQuantity = this.quantities[item.productName] || 1;
-    const checkCartEligibility = this.customerService
+    this.customerService
       .checkCartEligibility(item.productName, selectedQuantity)
       .subscribe((response) => {
         if (response.status === 'success') {
@@ -64,5 +70,21 @@ export class ProductShowcaseComponent implements OnInit {
           }, 3000);
         }
       });
+  }
+
+  onSubmitSearch(): void {
+    if (this.searchTerm == '') this.loadStoreItems();
+    else {
+      this.sharedService.searchItem(this.searchTerm).subscribe({
+        next: (response: DefaultResponse<Stock>) => {
+          this.storeItems = [];
+          this.storeItems = response.data || [];
+          this.searchTerm = '';
+        },
+        error: (error) => {
+          console.error('Error loading search items:', error);
+        },
+      });
+    }
   }
 }
