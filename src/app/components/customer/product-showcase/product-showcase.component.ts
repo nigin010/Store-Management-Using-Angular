@@ -96,4 +96,8 @@ export class ProductShowcaseComponent implements OnInit, OnChanges {
     this.selectedSortOption = value;
     this.loadStoreItems();
   }
+
+  preventTyping(event: KeyboardEvent) {
+    event.preventDefault();
+  }
 }
