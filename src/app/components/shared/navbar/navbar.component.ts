@@ -12,8 +12,10 @@ import { Location } from '@angular/common';
 })
 export class NavbarComponent implements OnInit, OnChanges {
   private tokenKey = 'authToken';
+  disableSignup: boolean = false;
   constructor(private readonly router: Router, private location: Location) {}
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
+    this.checkDisableSignup();
     this.backButtonCheck();
   }
 
@@ -22,7 +24,9 @@ export class NavbarComponent implements OnInit, OnChanges {
       this.router.navigate(['/login']);
     }
     this.backButtonCheck();
+    this.checkDisableSignup();
   }
+
   backButtonCheck(): boolean {
     const currentUrl = this.router.url;
     if (
@@ -37,6 +41,12 @@ export class NavbarComponent implements OnInit, OnChanges {
   goHomeCheck(): boolean {
     const currentUrl = this.router.url;
     if (currentUrl === '/bill') return true;
+    return false;
+  }
+
+  checkDisableSignup() {
+    const currentUrl = this.router.url;
+    if (currentUrl === '/sign-up') return true;
     return false;
   }
 
@@ -65,5 +75,15 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   goBack() {
     this.location.back();
+  }
+
+  routeToHome() {
+    const url = this.router.url;
+    if (url === '/sign-up') this.router.navigate(['/login']);
+    else {
+      if (sessionStorage.getItem('roleId') === '1')
+        this.router.navigate(['/admin-home']);
+      else this.router.navigate(['/view-store']);
+    }
   }
 }

@@ -29,6 +29,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.defineForm();
+    this.setRoleList();
   }
 
   defineForm() {
@@ -40,6 +41,7 @@ export class SignupComponent implements OnInit {
       role: ['', Validators.required],
     });
   }
+
   onSignup() {
     if (this.signupForm.valid) {
       const formData = this.signupForm.value;
@@ -68,5 +70,10 @@ export class SignupComponent implements OnInit {
         this.failureToast = null;
       }, 3000);
     }
+  }
+
+  setRoleList() {
+    if (sessionStorage.getItem('roleId')) return true;
+    return false;
   }
 }
