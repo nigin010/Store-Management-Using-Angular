@@ -60,7 +60,8 @@ export class SignupComponent implements OnInit {
             this.successToast = true;
             setTimeout(() => {
               this.successToast = null;
-              this.router.navigate(['/admin-home']);
+              if (this.setRoleList()) this.router.navigate(['/admin-home']);
+              else this.router.navigate(['/login']);
             }, 3000);
           }
         });

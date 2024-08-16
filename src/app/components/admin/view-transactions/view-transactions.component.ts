@@ -17,6 +17,8 @@ export class ViewTransactionsComponent implements OnInit {
   totalAmountSpent: number[] = [];
   itemsBought: string[] = [];
   searchTerm: string = '';
+  selectedSortOption: string = 'rel';
+
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class ViewTransactionsComponent implements OnInit {
 
   getTransactionData() {
     this.adminService
-      .viewTransactions()
+      .viewTransactions(this.selectedSortOption)
       .subscribe((response: DefaultResponse<Transaction>) => {
         this.nameOfTheCustomer = [];
         this.totalAmountSpent = [];
@@ -66,5 +68,10 @@ export class ViewTransactionsComponent implements OnInit {
         },
       });
     }
+  }
+
+  onSelectSortOption(value: string) {
+    this.selectedSortOption = value;
+    this.getTransactionData();
   }
 }

@@ -12,10 +12,17 @@ export class AdminService {
     'Content-Type': 'application/json',
   });
 
-  viewTransactions(): Observable<DefaultResponse<Transaction>> {
-    return this.http.get<DefaultResponse<Transaction>>('transaction', {
-      headers: this.headers,
-    });
+  viewTransactions(
+    selectedSortOption: string
+  ): Observable<DefaultResponse<Transaction>> {
+    return this.http.get<DefaultResponse<Transaction>>(
+      `transaction?selectedSortOption=${encodeURIComponent(
+        selectedSortOption
+      )}`,
+      {
+        headers: this.headers,
+      }
+    );
   }
 
   viewStock(selectedSortOption: string): Observable<DefaultResponse<Stock>> {
