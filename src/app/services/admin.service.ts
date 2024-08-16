@@ -18,10 +18,13 @@ export class AdminService {
     });
   }
 
-  viewStock(): Observable<DefaultResponse<Stock>> {
-    return this.http.get<DefaultResponse<Stock>>('stock', {
-      headers: this.headers,
-    });
+  viewStock(selectedSortOption: string): Observable<DefaultResponse<Stock>> {
+    return this.http.get<DefaultResponse<Stock>>(
+      `stock?selectedSortOption=${encodeURIComponent(selectedSortOption)}`,
+      {
+        headers: this.headers,
+      }
+    );
   }
 
   addAProduct(

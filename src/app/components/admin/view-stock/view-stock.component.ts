@@ -16,6 +16,8 @@ import { SharedService } from '../../../services/shared.service';
 export class ViewStockComponent implements OnInit {
   stockItems!: Stock[];
   searchTerm: string = '';
+  selectedSortOption: string = 'rel';
+
   constructor(
     private adminService: AdminService,
     private sharedService: SharedService,
@@ -28,7 +30,7 @@ export class ViewStockComponent implements OnInit {
 
   viewStock() {
     this.adminService
-      .viewStock()
+      .viewStock(this.selectedSortOption)
       .subscribe(
         (response: DefaultResponse<Stock>) => (this.stockItems = response.data)
       );
@@ -48,6 +50,11 @@ export class ViewStockComponent implements OnInit {
         },
       });
     }
+  }
+
+  onSelectSortOption(value: string) {
+    this.selectedSortOption = value;
+    this.viewStock();
   }
 
   getSafeImageUrl(url: string): SafeResourceUrl {

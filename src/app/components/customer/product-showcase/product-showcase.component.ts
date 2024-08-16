@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
 import { DefaultResponse, Stock } from '../../../types/response.model';
 import { CommonModule } from '@angular/common';
@@ -12,24 +12,28 @@ import { SharedService } from '../../../services/shared.service';
   templateUrl: './product-showcase.component.html',
   styleUrls: ['./product-showcase.component.css'],
 })
-export class ProductShowcaseComponent implements OnInit {
+export class ProductShowcaseComponent implements OnInit, OnChanges {
   storeItems: Stock[] = [];
   quantities: { [key: string]: number } = {};
   successToast: boolean | null = null;
   failureToast: boolean | null = null;
   searchTerm: string = '';
+  selectedSortOption: string = 'rel';
 
   constructor(
     private customerService: CustomerService,
     private sharedService: SharedService
   ) {}
-
   ngOnInit(): void {
     this.loadStoreItems();
   }
 
+  ngOnChanges(): void {
+    this.loadStoreItems();
+  }
+
   loadStoreItems(): void {
-    this.customerService.viewStore().subscribe({
+    this.customerService.viewStore(this.selectedSortOption).subscribe({
       next: (response: DefaultResponse<Stock>) => {
         this.storeItems = response.data || [];
       },
@@ -86,5 +90,10 @@ export class ProductShowcaseComponent implements OnInit {
         },
       });
     }
+  }
+
+  onSelectSortOption(value: string) {
+    this.selectedSortOption = value;
+    this.loadStoreItems();
   }
 }
