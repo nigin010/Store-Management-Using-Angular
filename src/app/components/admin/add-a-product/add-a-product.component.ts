@@ -42,12 +42,20 @@ export class AddAProductComponent implements OnInit {
           this.productDetails.quantity,
           this.productDetails.description
         )
-        .subscribe();
-      this.successToast = true;
-      setTimeout(() => {
-        this.successToast = null;
-        this.router.navigate(['/admin-home']);
-      }, 3000);
+        .subscribe((response) => {
+          if (response.status === 'fail') {
+            this.failureToast = true;
+            setTimeout(() => {
+              this.failureToast = null;
+            }, 3000);
+          } else {
+            this.successToast = true;
+            setTimeout(() => {
+              this.successToast = null;
+              this.router.navigate(['/admin-home']);
+            }, 3000);
+          }
+        });
     } else {
       this.failureToast = true;
       setTimeout(() => {
