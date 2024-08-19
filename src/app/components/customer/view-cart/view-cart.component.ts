@@ -16,6 +16,7 @@ export class ViewCartComponent implements OnInit {
   name: string | null = '';
   cartItems!: CartItem[];
   emptyCart: boolean = false;
+  successToast: boolean = false;
 
   constructor(
     private customerService: CustomerService,
@@ -38,6 +39,30 @@ export class ViewCartComponent implements OnInit {
       .subscribe((response: DefaultResponse<CartItem>) => {
         this.cartItems = response.data;
         if (this.cartItems.length === 0) this.emptyCart = true;
+      });
+  }
+
+  onDeleteItem(
+    userName: string,
+    productName: string,
+    imageUrl: string,
+    totalQuantity: number,
+    finalPrice: number
+  ) {
+    this.customerService
+      .removeFromCart(
+        userName,
+        productName,
+        imageUrl,
+        totalQuantity,
+        finalPrice
+      )
+      .subscribe((response) => {
+        this.successToast = true;
+        setTimeout(() => {
+          this.successToast = false;
+          window.location.reload();
+        }, 2000);
       });
   }
 

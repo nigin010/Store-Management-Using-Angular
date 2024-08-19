@@ -64,4 +64,27 @@ export class CustomerService {
       headers: this.headers,
     });
   }
+
+  removeFromCart(
+    username: string,
+    productName: string,
+    imageUrl: string,
+    totalQuantity: number,
+    finalPrice: number
+  ) {
+    return this.http.put<any>(
+      `remove-cart?username=${encodeURIComponent(
+        username
+      )}&productName=${encodeURIComponent(
+        productName
+      )}&imageUrl=${encodeURIComponent(
+        imageUrl
+      )}&totalQuantity=${encodeURIComponent(
+        totalQuantity
+      )}&finalPrice=${encodeURIComponent(finalPrice)}`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
 }
