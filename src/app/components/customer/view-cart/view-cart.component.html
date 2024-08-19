@@ -1,3 +1,4 @@
+{{ emptyCart }}
 <div
   *ngFor="let item of cartItems"
   class="card bg-base-100 shadow-xl mx-10 flex flex-row my-10"
@@ -25,9 +26,16 @@
     </div>
   </div>
 </div>
-
+@if(emptyCart) {
+<div class="flex items-center justify-center h-screen">
+  <p class="text-center">
+    Your Cart is Empty Right Now. Try adding some products from the store!
+  </p>
+</div>
+} @if(!emptyCart) {
 <div class="card-actions justify-end mx-10 my-10">
   <button (click)="proceedToCheckout()" class="btn btn-primary">
     Proceed To Checkout
   </button>
 </div>
+}

@@ -15,12 +15,14 @@ import { Router } from '@angular/router';
 export class ViewCartComponent implements OnInit {
   name: string | null = '';
   cartItems!: CartItem[];
+  emptyCart: boolean = false;
   constructor(
     private customerService: CustomerService,
     private sanitizer: DomSanitizer,
     private readonly router: Router
   ) {}
   ngOnInit(): void {
+    this.emptyCart = false;
     this.name = sessionStorage.getItem('name');
     if (!this.name) {
       this.router.navigate(['/login']);
@@ -29,6 +31,8 @@ export class ViewCartComponent implements OnInit {
       .viewCart(this.name)
       .subscribe((response: DefaultResponse<CartItem>) => {
         this.cartItems = response.data;
+        console.log('Length is --> ', this.cartItems.length, this.emptyCart);
+        if (this.cartItems.length === 0) this.emptyCart = true;
       });
   }
   getSafeImageUrl(url: string): SafeResourceUrl {
