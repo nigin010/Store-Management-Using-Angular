@@ -34,6 +34,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   viewCart() {
+    this.cartItems = [];
     this.customerService
       .viewCart(this.name)
       .subscribe((response: DefaultResponse<CartItem>) => {
@@ -59,9 +60,9 @@ export class ViewCartComponent implements OnInit {
       )
       .subscribe((response) => {
         this.successToast = true;
+        this.viewCart();
         setTimeout(() => {
           this.successToast = false;
-          window.location.reload();
         }, 2000);
       });
   }

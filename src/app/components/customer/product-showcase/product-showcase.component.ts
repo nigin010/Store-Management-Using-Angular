@@ -33,6 +33,7 @@ export class ProductShowcaseComponent implements OnInit, OnChanges {
   }
 
   loadStoreItems(): void {
+    this.storeItems = [];
     this.customerService.viewStore(this.selectedSortOption).subscribe({
       next: (response: DefaultResponse<Stock>) => {
         this.storeItems = response.data || [];
@@ -61,9 +62,9 @@ export class ProductShowcaseComponent implements OnInit, OnChanges {
             .subscribe(() => {
               {
                 this.successToast = true;
+                this.loadStoreItems();
                 setTimeout(() => {
                   this.failureToast = null;
-                  window.location.reload();
                 }, 2000);
               }
             });
