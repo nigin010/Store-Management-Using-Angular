@@ -16,6 +16,7 @@ export class ViewTransactionsComponent implements OnInit {
   nameOfTheCustomer: string[] = [];
   totalAmountSpent: number[] = [];
   itemsBought: string[] = [];
+  transctionDate: Date[] = [];
   searchTerm: string = '';
   selectedSortOption: string = 'rel';
 
@@ -40,6 +41,9 @@ export class ViewTransactionsComponent implements OnInit {
         );
         this.itemsBought = response.data.map(
           (transaction: Transaction) => transaction.itemsBought
+        );
+        this.transctionDate = response.data.map(
+          (transaction: Transaction) => transaction.transactionDate
         );
       });
   }

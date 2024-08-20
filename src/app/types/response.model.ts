@@ -9,6 +9,7 @@ export interface Transaction {
   nameOfTheCustomer: string;
   totalSpent: number;
   itemsBought: string;
+  transactionDate: Date;
 }
 
 export interface Stock {
